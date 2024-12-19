@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_login/data/models/signIn_request_params.dart';
+import 'package:flutter_login/domain/usecases/signIn.dart';
+import 'package:flutter_login/presentation/auth/service_locator.dart';
 
 class LoginScreen extends StatelessWidget {
   @override
@@ -286,10 +289,9 @@ class _LoginScreenMobileState extends State<LoginScreenMobile> {
                         minimumSize: const Size.fromHeight(45),
                         backgroundColor: Colors.blue),
                     onPressed: () {
-                      // Navigator.pushReplacement<void, void>(
-                      //     context,
-                      //     MaterialPageRoute<void>(
-                      //         builder: (BuildContext context) => HomeScreen()));
+                      sl<SignInUseCase>().call(
+                          param: SigninRequestParams(
+                              username: email.text, password: password.text));
                     },
                     child: const Text(
                       "Login",
